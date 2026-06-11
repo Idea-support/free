@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrandShow — Dashboard</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-page">
+
+  <!-- DASH NAVBAR -->
+  <nav class="dash-navbar">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <img src="../assets/images/icons/logo.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <svg style="display:none" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="nav-logo-text">Brand<span>Show</span></span>
+    </a>
+
+    <ul class="dash-nav-links">
+      <li><a href="dashboard.html" class="active" data-i18n="dashboard">Dashboard</a></li>
+      <li><a href="#" data-i18n="myIdeas">My Ideas</a></li>
+      <li><a href="#" data-i18n="winners">Winners</a></li>
+      <li><a href="#judges" data-i18n="judges">Judges</a></li>
+      <li><a href="#" data-i18n="resources">Resources</a></li>
+    </ul>
+
+    <div class="dash-nav-right">
+      <button class="lang-toggle" id="langBtn" data-sound="click">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="lang-label">فارسی</span>
+      </button>
+
+      <button class="notif-btn" data-sound="click">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+
+      <div class="user-badge" id="userBadge">
+        <div class="user-avatar">
+          <img src="../assets/images/icons/user-icon.png" alt="User" onerror="this.style.display='none'; this.parentElement.style.background='var(--blue-pale)'">
+        </div>
+        <span class="user-name" id="nav-user-name">John Smith</span>
+        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+
+      <button class="btn btn-outline-blue" id="logoutBtn" data-sound="click" style="font-size:0.8rem;padding:8px 16px">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="dash-content">
+    <!-- Page Title -->
+    <div class="dash-page-title">
+      <h1 data-i18n="submitYourIdea">Submit Your Idea</h1>
+      <p data-i18n="submitSub">Share your innovative idea with us! Every month, we select the best ideas and invest in their full potential.</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="dash-grid">
+
+      <!-- LEFT: Idea Form -->
+      <div>
+        <div class="idea-form-card">
+          <div class="idea-form-header">
+            <h3 data-i18n="ideaInfo">Idea Information</h3>
+            <span class="usage-badge" id="usage-badge">0 / 3 used</span>
+          </div>
+
+          <div class="form-msg" id="idea-msg" style="display:none"></div>
+
+          <form id="ideaForm">
+            <!-- Company Name -->
+            <div class="form-field">
+              <label class="field-label">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span data-i18n="companyName">Company / Brand Name</span>
+              </label>
+              <input type="text" id="f-company" class="field-input" data-i18n-ph="companyPlaceholder" placeholder="Enter your company or brand name">
+            </div>
+
+            <!-- Idea Title -->
+            <div class="form-field">
+              <label class="field-label">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span data-i18n="ideaTitle">Idea Title / Category</span>
+              </label>
+              <input type="text" id="f-title" class="field-input" data-i18n-ph="ideaTitlePlaceholder" placeholder="What is your idea about?">
+            </div>
+
+            <!-- Idea Description -->
+            <div class="form-field">
+              <label class="field-label">
+                <svg viewBox="0 0 24 24"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+                <span data-i18n="ideaDesc">Idea Description</span>
+              </label>
+              <textarea id="f-desc" class="field-input" rows="4" data-i18n-ph="ideaDescPlaceholder" placeholder="Describe your idea in detail. What problem does it solve? How does it work?"></textarea>
+            </div>
+
+            <!-- Competitors -->
+            <div class="form-field">
+              <label class="field-label">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span data-i18n="competitors">Current Competitors &amp; How to Compete</span>
+              </label>
+              <textarea id="f-competitors" class="field-input" rows="3" data-i18n-ph="competitorsPlaceholder" placeholder="Who are your main competitors? How will you compete and stand out?"></textarea>
+            </div>
+
+            <!-- Revenue Model -->
+            <div class="form-field">
+              <label class="field-label">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span data-i18n="revenueModel">Revenue Model</span>
+              </label>
+              <textarea id="f-revenue" class="field-input" rows="3" data-i18n-ph="revenuePlaceholder" placeholder="How will your idea generate income? What is your business model?"></textarea>
+            </div>
+
+            <!-- Funding Required -->
+            <div class="form-field">
+              <label class="field-label">
+                <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <span data-i18n="fundingRequired">Funding Required</span>
+              </label>
+              <textarea id="f-funding" class="field-input" rows="3" data-i18n-ph="fundingPlaceholder" placeholder="How much funding do you need? Explain the reasons and how it will be used."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit-idea" data-sound="submit">
+              <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span data-i18n="submitIdea">SUBMIT IDEA</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Submitted Ideas -->
+        <div class="submitted-section">
+          <div class="section-header">
+            <h3 data-i18n="submittedIdeas">Your Submitted Ideas</h3>
+            <select class="status-filter" id="status-filter" data-sound="click">
+              <option value="all" data-i18n="allStatus">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="under_review">Under Review</option>
+              <option value="reviewed">Reviewed</option>
+            </select>
+          </div>
+          <div class="idea-list" id="idea-list">
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.3 4.7-3.3 6l-.7.4V17a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.6l-.7-.4A7 7 0 0 1 5 9a7 7 0 0 1 7-7zm-2 18h4v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1z"/></svg>
+              <p>Loading your ideas...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section">
+          <div class="section-header">
+            <h3 data-i18n="resultsFrom">Results From Previous Competitions</h3>
+          </div>
+          <div id="results-list">
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              <p>No previous competition results yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Sidebar -->
+      <div class="dash-sidebar">
+        <!-- Profile Card -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <img src="../assets/images/icons/user-icon.png" alt="User" onerror="this.style.display='none'">
+          </div>
+          <h3 id="profile-name">John Smith</h3>
+          <p class="role" id="profile-role">Entrepreneur</p>
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <div class="stat-label" data-i18n="memberSince">Member Since</div>
+              <div class="stat-val" id="profile-since">—</div>
+            </div>
+            <div class="profile-stat">
+              <div class="stat-label" data-i18n="ideasSubmitted">Ideas Submitted</div>
+              <div class="stat-val" id="profile-ideas">0 / 3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-card">
+          <h4 data-i18n="howItWorks">How It Works</h4>
+
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="how-step-text">
+              <h5 data-i18n="step1">1. Submit Your Idea</h5>
+              <p data-i18n="step1desc">Fill out the form and share your innovative idea.</p>
+            </div>
+          </div>
+
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+            <div class="how-step-text">
+              <h5 data-i18n="step2">2. Our Judges Review</h5>
+              <p data-i18n="step2desc">Our expert judges will review your idea carefully.</p>
+            </div>
+          </div>
+
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="how-step-text">
+              <h5 data-i18n="step3">3. Monthly Selection</h5>
+              <p data-i18n="step3desc">Top 10 ideas each month receive full funding.</p>
+            </div>
+          </div>
+
+          <div class="how-step">
+            <div class="how-step-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="how-step-text">
+              <h5 data-i18n="step4">4. Results &amp; Rankings</h5>
+              <p data-i18n="step4desc">Check your dashboard after each competition.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Competition Card -->
+        <div class="competition-card">
+          <h4 data-i18n="thisMonthComp">This Month's Competition</h4>
+
+          <div class="comp-timer">
+            <div class="comp-ring">
+              <svg viewBox="0 0 60 60">
+                <circle class="track" cx="30" cy="30" r="24"/>
+                <circle class="progress" cx="30" cy="30" r="24"/>
+              </svg>
+              <div class="comp-ring-inner">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+            </div>
+            <div class="comp-info">
+              <div class="comp-status" data-i18n="submissionsOpen">Submissions Open</div>
+              <div class="comp-days" id="comp-days">
+                — <span data-i18n="daysLeft">Days Left</span>
+              </div>
+              <div class="comp-deadline" id="comp-deadline"></div>
+            </div>
+          </div>
+
+          <button class="btn-view-ideas" data-sound="click" data-i18n="viewCurrentIdeas">
+            VIEW CURRENT IDEAS
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end dash-grid -->
+  </main>
+
+  <!-- FOOTER -->
+  <div class="wave-divider" style="margin-top:40px">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="url(#waveGrad2)"/>
+      <defs>
+        <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#00B4D8"/>
+          <stop offset="100%" style="stop-color:#0096C7"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <footer class="footer">
+    <div class="footer-social">
+      <a href="#" class="social-btn" data-sound="click">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#" class="social-btn" data-sound="click">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+      </a>
+      <a href="#" class="social-btn" data-sound="click">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="social-btn" data-sound="click">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+    <p class="footer-copy" data-i18n="copyright">© 2024 BrandShow. All rights reserved.</p>
+  </footer>
+
+  <!-- Add i18n keys for dashboard nav -->
+  <script>
+    // Extend i18n for dashboard-specific keys
+    window._dashboardI18nExt = {
+      en: { dashboard: 'Dashboard', myIdeas: 'My Ideas', winners: 'Winners', resources: 'Resources' },
+      fa: { dashboard: 'داشبورد', myIdeas: 'ایده‌های من', winners: 'برندگان', resources: 'منابع' }
+    };
+  </script>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/dashboard.js"></script>
+
+  <script>
+    // Merge extended i18n keys
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window._dashboardI18nExt && typeof i18n !== 'undefined') {
+        Object.assign(i18n.en, window._dashboardI18nExt.en);
+        Object.assign(i18n.fa, window._dashboardI18nExt.fa);
+      }
+    });
+  </script>
+</body>
+</html>
