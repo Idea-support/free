@@ -727,3 +727,106 @@ body.rtl .profile-stat:not(:last-child) {
   .dash-sidebar { grid-template-columns: 1fr; }
   .idea-status-block { display: none; }
 }
+
+/* ===== RANKINGS TABLE ===== */
+.rankings-section {
+  margin-top: 32px;
+  margin-bottom: 60px;
+}
+
+.rankings-table-wrap {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.rankings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.rankings-table thead tr {
+  background: linear-gradient(90deg, #00B4D8 0%, #48CAE4 100%);
+}
+
+.rankings-table thead th {
+  padding: 13px 16px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+body.rtl .rankings-table thead th { text-align: right; }
+
+.rankings-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.rankings-table tbody tr:last-child { border-bottom: none; }
+.rankings-table tbody tr:hover { background: #F0F8FF; }
+
+.rankings-table tbody td {
+  padding: 12px 16px;
+  color: var(--text-dark);
+  vertical-align: middle;
+}
+
+body.rtl .rankings-table tbody td { text-align: right; }
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.rank-badge.gold   { background: #FFF3CD; color: #856404; }
+.rank-badge.silver { background: #E2E8F0; color: #4A5568; }
+.rank-badge.bronze { background: #FEE2D5; color: #9C3B00; }
+.rank-badge.normal { background: var(--blue-pale); color: var(--blue-deep); }
+
+.rankings-empty td { text-align: center; }
+
+/* ===== SIMPLE DASH FOOTER ===== */
+.dash-footer {
+  background: var(--bg-page);
+  border-top: 1px solid var(--border);
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.dash-footer-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dash-footer-links a {
+  text-decoration: none;
+  color: var(--text-mid);
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.dash-footer-links a:hover { color: var(--blue-primary); }
+
+.dash-footer-copy {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
