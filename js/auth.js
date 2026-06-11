@@ -1,8 +1,8 @@
 /* ===== BRANDSHOW — AUTH JS ===== */
 
 // ===== SUPABASE CONFIG — جایگزین کنید =====
-const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+const SUPABASE_URL = 'https://mwxjnhjjxpukpnoqytnf.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13eGpuaGpqeHB1a3Bub3F5dG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNjEyODQsImV4cCI6MjA5NjczNzI4NH0._plGjX6j5t_NlmR5KvhsP5L7pNlFkh41q0q0_wPEK7g';
 
 async function supaFetch(endpoint, method, body) {
   const res = await fetch(SUPABASE_URL + endpoint, {
